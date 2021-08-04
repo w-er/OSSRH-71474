@@ -24,7 +24,7 @@ public class BusinessException extends BaseUncheckedException implements Seriali
         return new BusinessException(ex.getCode(), ex.getMessage());
     }
     public static BusinessException busExp(String message) {
-        return new BusinessException(100500, message);
+        return new BusinessException(ExceptionCode.SYS_BIZ_ERROR.getCode(), message);
     }
     public static BusinessException busExp(int code, String message) {
         return new BusinessException(code, message);

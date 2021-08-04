@@ -1,5 +1,6 @@
 package com.wencoder.tools.domain;
 
+import com.wencoder.tools.exec.ExceptionCode;
 import com.wencoder.tools.exec.IException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -22,7 +23,7 @@ public class ResultVo<T> implements Serializable {
     private int code = 0;
 
     @ApiModelProperty(value = "附属信息")
-    private String message = "此次请求正常";
+    private String message = "请求成功";
 
     @ApiModelProperty(position = 2, value = "响应数据")
     private T data;
@@ -57,7 +58,7 @@ public class ResultVo<T> implements Serializable {
     }
 
     public static ResultVo<Object> failed(String message) {
-        return new ResultVo<>(400400, message);
+        return new ResultVo<>(ExceptionCode.SYS_BIZ_ERROR.getCode(), message);
     }
 
     public static ResultVo<Object> failed(Integer code, String message) {

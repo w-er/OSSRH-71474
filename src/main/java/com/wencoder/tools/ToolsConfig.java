@@ -1,5 +1,6 @@
 package com.wencoder.tools;
 
+import com.wencoder.tools.exec.conf.ExceptionHandlerAdvice;
 import com.wencoder.tools.utils.CopyUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.Import;
  * ConditionalOnBean         //	当给定的在bean存在时,则实例化当前Bean
  * ConditionalOnMissingBean  //	当给定的在bean不存在时,则实例化当前Bean
  * ConditionalOnClass        //	当给定的类名在类路径上存在，则实例化当前Bean
- * ConditionalOnMissingClass //	当给定的类名在类路径上不存在，则实例化当前Bean
+ * ConditionalOnMissingClass //	当给定的类名在类路径上不存在，则c例化当前Bean
  */
 @Import({
 
@@ -36,5 +37,12 @@ public class ToolsConfig {
     public CopyUtil springUtil() {
         return new CopyUtil();
     }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ExceptionHandlerAdvice exceptionHandlerAdvice() {
+        return new ExceptionHandlerAdvice();
+    }
+
 
 }

@@ -102,7 +102,7 @@ public class CopyUtil {
      * @param data    数据（集合）
      * @return 映射类对象
      */
-    public static <E, T> List<E> copyToList(Class<E> toClass, Collection<T> data) {
+    public static <E, T> List<E> copyToList(Collection<T> data, Class<E> toClass) {
         return mapperFacade.mapAsList(data, toClass);
     }
 
@@ -115,7 +115,7 @@ public class CopyUtil {
      * @param configMap 自定义配置
      * @return 映射类对象
      */
-    public static <E, T> E copy(Class<E> toClass, T data, Map<String, String> configMap) {
+    public static <E, T> E copy(T data, Class<E> toClass, Map<String, String> configMap) {
         MapperFacade mapperFacade = getMapperFacade(toClass, data.getClass(), configMap);
         return mapperFacade.map(data, toClass);
     }
@@ -128,7 +128,7 @@ public class CopyUtil {
      * @param configMap 自定义配置
      * @return 映射类对象
      */
-    public static <E, T> List<E> copyToList(Class<E> toClass, Collection<T> data, Map<String, String> configMap) {
+    public static <E, T> List<E> copyToList(Collection<T> data, Class<E> toClass, Map<String, String> configMap) {
         T t = data.stream().findFirst().orElse(null);
         if (Objects.isNull(t)) {
             return null;
