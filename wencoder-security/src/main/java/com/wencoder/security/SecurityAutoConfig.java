@@ -14,6 +14,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collections;
 
@@ -28,6 +30,16 @@ import java.util.Collections;
 @ConditionalOnWebApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityAutoConfig {
+
+    /**
+     * 创建默认密码加密
+     * @return BCryptPasswordEncoder
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     /**
      * 默认用户实现
