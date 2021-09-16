@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Created by 王林 on 2021-01-14 11:01:35
  */
 @Data
-@ApiModel(value = "结果集", description = "结果集")
+@ApiModel(value = "结果", description = "结果")
 public class ResultVo<T> implements Serializable {
 
     private static final long serialVersionUID = -8621900780393672869L;
@@ -22,10 +22,10 @@ public class ResultVo<T> implements Serializable {
     @ApiModelProperty(value = "状态码：0 - 代表此次请求成功, 其他请参考错误代码信息表")
     private int code = 0;
 
-    @ApiModelProperty(value = "附属信息")
-    private String message = "请求成功";
+    @ApiModelProperty(value = "信息")
+    private String message = "成功";
 
-    @ApiModelProperty(position = 2, value = "响应数据")
+    @ApiModelProperty(position = 2, value = "数据")
     private T data;
 
     private ResultVo() {
