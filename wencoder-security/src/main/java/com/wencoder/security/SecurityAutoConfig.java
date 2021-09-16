@@ -4,10 +4,12 @@ import com.wencoder.security.cfg.DefaultSecurityConfig;
 import com.wencoder.security.domain.DefaultUserDetails;
 import com.wencoder.security.filter.DefaultSecurityFilter;
 import com.wencoder.security.handler.DefaultAuthenticationEntryPoint;
+import com.wencoder.security.properties.SecurityProperties;
 import com.wencoder.security.service.DefaultUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -29,10 +31,12 @@ import java.util.Collections;
 @Configuration
 @ConditionalOnWebApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableConfigurationProperties({SecurityProperties.class})
 public class SecurityAutoConfig {
 
     /**
      * 创建默认密码加密
+     *
      * @return BCryptPasswordEncoder
      */
     @Bean
@@ -77,8 +81,8 @@ public class SecurityAutoConfig {
      */
     @Bean
     @ConditionalOnMissingBean
-    public DefaultSecurityFilter defaultSecurityFilter() {
-        return new DefaultSecurityFilter(defaultUserDetailsService());
+    public DefaultSecurityFilter defaultSecurityFilter(DefaultUserDetailsService defaultUserDetailsService) {
+        return new DefaultSecurityFilter(defaultUserDetailsService);
     }
 
     /**
@@ -86,8 +90,11 @@ public class SecurityAutoConfig {
      */
     @Bean
     @ConditionalOnMissingBean
-    public DefaultSecurityConfig defaultSecurityConfig() {
-        return new DefaultSecurityConfig(authenticationEntryPoint(), defaultSecurityFilter());
+    public DefaultSecurityConfig defaultSecurityConfig(DefaultAuthenticationEntryPoint defaultAuthenticationEntryPoint,
+                                                       DefaultSecurityFilter defaultSecurityFilter,
+                                                       SecurityProperties properties
+    ) {
+        return new DefaultSecurityConfig(defaultAuthenticationEntryPoint, defaultSecurityFilter, properties);
     }
 
 }

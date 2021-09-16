@@ -2,6 +2,7 @@ package com.wencoder.security.cfg;
 
 import com.wencoder.security.filter.DefaultSecurityFilter;
 import com.wencoder.security.handler.DefaultAuthenticationEntryPoint;
+import com.wencoder.security.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,10 +19,14 @@ public class DefaultSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DefaultAuthenticationEntryPoint authenticationEntryPoint;
     private final DefaultSecurityFilter securityFilter;
+    private final SecurityProperties properties;
 
-    public DefaultSecurityConfig(DefaultAuthenticationEntryPoint authenticationEntryPoint, DefaultSecurityFilter securityFilter) {
+    public DefaultSecurityConfig(DefaultAuthenticationEntryPoint authenticationEntryPoint,
+                                 DefaultSecurityFilter securityFilter,
+                                 SecurityProperties properties) {
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.securityFilter = securityFilter;
+        this.properties = properties;
     }
 
     @Override
@@ -37,8 +42,7 @@ public class DefaultSecurityConfig extends WebSecurityConfigurerAdapter {
         // 4、请求权限配置
         http.authorizeRequests()
                 // 定义配置类，加载配置类地址
-//                .antMatchers(config.getToken().getIgnored()).permitAll()
-                .antMatchers(new String[]{}).permitAll()
+                .antMatchers(properties.getIgnored()).permitAll()
                 // 剩下的所有请求都需要认证才能访问
                 .anyRequest().authenticated();
         // 5、配置资源权限

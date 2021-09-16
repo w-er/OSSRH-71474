@@ -11,6 +11,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface DefaultUserDetailsService extends UserDetailsService {
 
+    /**
+     * 检查是否token是否有效
+     *
+     * @param token 令牌
+     * @return 用户信息
+     */
     UserDetails check(String token);
 
 }
