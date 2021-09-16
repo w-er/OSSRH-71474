@@ -10,6 +10,10 @@
 
     <artifactId>wencoder-security</artifactId>
 
+    <properties>
+        <jwt.version>0.9.1</jwt.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.wencoder</groupId>
@@ -20,6 +24,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
         </dependency>
     </dependencies>
 
