@@ -23,9 +23,7 @@ import org.springframework.context.annotation.Import;
 })
 @Configuration
 // 导入我们自定义的配置类,供当前类使用
-@EnableConfigurationProperties({
-
-})
+@EnableConfigurationProperties()
 // 当存在某个类时，此自动配置类才会生效,这里可以使用外部的String类名
 //@ConditionalOnMissingBean(SpringUtil.class)
 // 只有web应用程序时此自动配置类才会生效
@@ -43,6 +41,5 @@ public class ToolsConfig {
     public ExceptionHandlerAdvice exceptionHandlerAdvice() {
         return new ExceptionHandlerAdvice();
     }
-
 
 }

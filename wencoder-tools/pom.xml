@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wencoder</groupId>
+        <artifactId>OSSRH-71474</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>wencoder-tools</artifactId>
+    <packaging>jar</packaging>
+    <description>Common Tools</description>
+
+<!--    <properties>-->
+<!--        &lt;!&ndash; Java 版本 和 编码格式 &ndash;&gt;-->
+<!--        <java.version>1.8</java.version>-->
+<!--        <maven.compiler.source>${java.version}</maven.compiler.source>-->
+<!--        <maven.compiler.target>${java.version}</maven.compiler.target>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+
+<!--        &lt;!&ndash; 基于 spring boot 快速开始项目构建 &ndash;&gt;-->
+<!--        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>-->
+
+<!--        <fastjson.version>1.2.76</fastjson.version>-->
+<!--        <collections4.version>4.4</collections4.version>-->
+<!--        <swagger.version>2.8.0</swagger.version>-->
+<!--        <orika.version>1.4.6</orika.version>-->
+<!--        <hutool.version>5.7.5</hutool.version>-->
+<!--    </properties>-->
+
+    <dependencies>
+        <!-- JSON 解析 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!-- 集合工具 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${collections4.version}</version>
+        </dependency>
+        <!-- 文档API -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <!-- 对象CP -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>${orika.version}</version>
+        </dependency>
+        <!-- 工具包 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

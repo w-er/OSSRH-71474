@@ -14,7 +14,7 @@ import java.util.Date;
 
 /**
  * 基于JDK8 time包的时间工具类
- *
+ * <p>
  * Created by 王林 on 2021-01-29 13:01:14
  */
 @SuppressWarnings("all")
@@ -56,7 +56,7 @@ public class DateUtil {
      * 特定时间格式String 转 LocalDateTime
      *
      * @param timeStr 文本时间
-     * @param format 格式
+     * @param format  格式
      * @return 时间
      */
     public static LocalDateTime stringToLocalDateTime(String timeStr, Format format) {
@@ -67,7 +67,7 @@ public class DateUtil {
      * LocalDateTime 转 特定时间格式String
      *
      * @param localDateTime 时间
-     * @param format 格式
+     * @param format        格式
      * @return 文本时间
      */
     public static String localDateTimeToString(LocalDateTime localDateTime, Format format) {
@@ -78,7 +78,7 @@ public class DateUtil {
      * 特定时间格式String 转 LocalDate
      *
      * @param timeStr 文本时间
-     * @param format 格式
+     * @param format  格式
      * @return 时间
      */
     public static LocalDate stringToLocalDate(String timeStr, Format format) {
@@ -89,7 +89,7 @@ public class DateUtil {
      * LocalDate 转 特定时间格式String
      *
      * @param localDate 时间
-     * @param format 格式
+     * @param format    格式
      * @return 文本时间
      */
     public static String localDateToString(LocalDate localDate, Format format) {
@@ -100,7 +100,7 @@ public class DateUtil {
      * 特定时间格式String 转 LocalTime
      *
      * @param timeStr 文本时间
-     * @param format 格式
+     * @param format  格式
      * @return 时间
      */
     public static LocalTime stringToLocalTime(String timeStr, Format format) {
@@ -111,7 +111,7 @@ public class DateUtil {
      * LocalTime 转 特定时间格式String
      *
      * @param localTime 时间
-     * @param format 格式
+     * @param format    格式
      * @return 文本时间
      */
     public static String localTimeToString(LocalTime localTime, Format format) {
@@ -236,7 +236,7 @@ public class DateUtil {
     /**
      * Date 转 特定时间格式String
      *
-     * @param date Date
+     * @param date   Date
      * @param format 格式
      * @return 格式化文本时间
      */
@@ -248,7 +248,7 @@ public class DateUtil {
      * 特定时间格式String 转 Date
      *
      * @param timeStr 文本时间
-     * @param format 格式
+     * @param format  格式
      * @return Date
      */
     public static Date stringToDate(String timeStr, Format format) {
@@ -271,7 +271,7 @@ public class DateUtil {
      * 特定时间格式String 转 毫秒数
      *
      * @param timeStr 文本时间
-     * @param format 格式
+     * @param format  格式
      * @return 毫秒数
      */
     public static Long stringToMillis(String timeStr, Format format) {
@@ -303,8 +303,8 @@ public class DateUtil {
      * 日期加上一个数，根据field不同加不同值,field为ChronoUnit.*
      *
      * @param localDateTime LocalDateTime
-     * @param number 加数值
-     * @param field 单位
+     * @param number        加数值
+     * @param field         单位
      * @return 结果时间
      */
     public static LocalDateTime plus(LocalDateTime localDateTime, Long number, TemporalUnit field) {
@@ -315,8 +315,8 @@ public class DateUtil {
      * 日期减去一个数，根据field不同减不同值，field参数为ChronoUnit.*
      *
      * @param localDateTime LocalDateTime
-     * @param number 减数值
-     * @param field 单位
+     * @param number        减数值
+     * @param field         单位
      * @return 结果时间
      */
     public static LocalDateTime minus(LocalDateTime localDateTime, Long number, TemporalUnit field) {
@@ -327,8 +327,8 @@ public class DateUtil {
      * 获取两个日期的差 field参数为ChronoUnit.*
      *
      * @param startTime 开始
-     * @param endTime 结束
-     * @param field 单位
+     * @param endTime   结束
+     * @param field     单位
      * @return 结果时间
      */
     public static Long betweenTwoTime(LocalDateTime startTime, LocalDateTime endTime, ChronoUnit field) {

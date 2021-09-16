@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 运行时异常，基类
- *
+ * <p>
  * Created by 王林 on 2021-01-29 13:01:14
  */
 @Data

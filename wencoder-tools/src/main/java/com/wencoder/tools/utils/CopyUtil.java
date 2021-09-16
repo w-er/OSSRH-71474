@@ -3,6 +3,7 @@ package com.wencoder.tools.utils;
 import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.converter.BidirectionalConverter;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import ma.glasnost.orika.metadata.ClassMapBuilder;
@@ -20,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 映射工具类
- *
+ * <p>
  * Created by 王林 on 2021-01-29 13:01:14
  */
 @Slf4j
@@ -49,39 +50,72 @@ public class CopyUtil {
     }
 
     private static class LocalDateTimeConverter extends BidirectionalConverter<LocalDateTime, LocalDateTime> {
+
         @Override
-        public LocalDateTime convertTo(LocalDateTime source, Type<LocalDateTime> destinationType) {
-            return LocalDateTime.from(source);
+        public LocalDateTime convertTo(LocalDateTime localDateTime, Type<LocalDateTime> type, MappingContext mappingContext) {
+            return LocalDateTime.from(localDateTime);
         }
 
         @Override
-        public LocalDateTime convertFrom(LocalDateTime source, Type<LocalDateTime> destinationType) {
-            return LocalDateTime.from(source);
+        public LocalDateTime convertFrom(LocalDateTime localDateTime, Type<LocalDateTime> type, MappingContext mappingContext) {
+            return LocalDateTime.from(localDateTime);
         }
+
+//        @Override
+//        public LocalDateTime convertTo(LocalDateTime source, Type<LocalDateTime> destinationType) {
+//            return LocalDateTime.from(source);
+//        }
+//
+//        @Override
+//        public LocalDateTime convertFrom(LocalDateTime source, Type<LocalDateTime> destinationType) {
+//            return LocalDateTime.from(source);
+//        }
     }
 
     private static class LocalDateConverter extends BidirectionalConverter<LocalDate, LocalDate> {
+
         @Override
-        public LocalDate convertTo(LocalDate source, Type<LocalDate> destinationType) {
-            return LocalDate.from(source);
+        public LocalDate convertTo(LocalDate localDate, Type<LocalDate> type, MappingContext mappingContext) {
+            return LocalDate.from(localDate);
         }
 
         @Override
-        public LocalDate convertFrom(LocalDate source, Type<LocalDate> destinationType) {
-            return LocalDate.from(source);
+        public LocalDate convertFrom(LocalDate localDate, Type<LocalDate> type, MappingContext mappingContext) {
+            return LocalDate.from(localDate);
         }
+
+//        @Override
+//        public LocalDate convertTo(LocalDate source, Type<LocalDate> destinationType) {
+//            return LocalDate.from(source);
+//        }
+//
+//        @Override
+//        public LocalDate convertFrom(LocalDate source, Type<LocalDate> destinationType) {
+//            return LocalDate.from(source);
+//        }
     }
 
     private static class LocalTimeConverter extends BidirectionalConverter<LocalTime, LocalTime> {
+
         @Override
-        public LocalTime convertTo(LocalTime source, Type<LocalTime> destinationType) {
-            return LocalTime.from(source);
+        public LocalTime convertTo(LocalTime localTime, Type<LocalTime> type, MappingContext mappingContext) {
+            return LocalTime.from(localTime);
         }
 
         @Override
-        public LocalTime convertFrom(LocalTime source, Type<LocalTime> destinationType) {
-            return LocalTime.from(source);
+        public LocalTime convertFrom(LocalTime localTime, Type<LocalTime> type, MappingContext mappingContext) {
+            return LocalTime.from(localTime);
         }
+
+//        @Override
+//        public LocalTime convertTo(LocalTime source, Type<LocalTime> destinationType) {
+//            return LocalTime.from(source);
+//        }
+//
+//        @Override
+//        public LocalTime convertFrom(LocalTime source, Type<LocalTime> destinationType) {
+//            return LocalTime.from(source);
+//        }
     }
 
     /**
