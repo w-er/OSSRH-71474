@@ -18,12 +18,11 @@ public class DefaultAuthenticationEntryPoint implements AuthenticationEntryPoint
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
-        // 未登录 或 token过未登录期
         if (e != null) {
-            ResponseUtil.out(response, ResultVo.failed(401, "未登录情况不能访问当前服务！"));
-//            ResponseUtil.out(response, ResultVo.failed(401, e.getMessage()));
+            log.error(e.getMessage());
+            ResponseUtil.out(response, ResultVo.failed(401, "未登录，不能访问当前服务！"));
         } else {
-            ResponseUtil.out(response, ResultVo.failed(403, "Token过期!"));
+            ResponseUtil.out(response, ResultVo.failed(402, "无效令牌！"));
         }
     }
 

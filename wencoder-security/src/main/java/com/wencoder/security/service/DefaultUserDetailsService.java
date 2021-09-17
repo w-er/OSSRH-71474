@@ -1,7 +1,9 @@
 package com.wencoder.security.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
+import com.wencoder.security.domain.DefaultUserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 默认权限用户持久接口
@@ -15,8 +17,9 @@ public interface DefaultUserDetailsService extends UserDetailsService {
      * 检查是否token是否有效
      *
      * @param token 令牌
+     * @param request 请求
      * @return 用户信息
      */
-    UserDetails check(String token);
+    DefaultUserDetails check(String token, HttpServletRequest request);
 
 }

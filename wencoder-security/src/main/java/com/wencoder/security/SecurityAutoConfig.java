@@ -6,6 +6,7 @@ import com.wencoder.security.filter.DefaultSecurityFilter;
 import com.wencoder.security.handler.DefaultAuthenticationEntryPoint;
 import com.wencoder.security.properties.SecurityProperties;
 import com.wencoder.security.service.DefaultUserDetailsService;
+import com.wencoder.security.service.DefaultUserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -14,8 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -54,17 +53,7 @@ public class SecurityAutoConfig {
         DefaultUserDetails user = new DefaultUserDetails().setId(1).setUsername("test").setPassword("123456")
                 .setRoles(Collections.singletonList("Test"));
         log.info("权限认证模块默认账号：{}", user.toString());
-        return new DefaultUserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return user;
-            }
-
-            @Override
-            public UserDetails check(String token) {
-                return user;
-            }
-        };
+        return new DefaultUserDetailsServiceImpl(user);
     }
 
     /**
@@ -81,8 +70,11 @@ public class SecurityAutoConfig {
      */
     @Bean
     @ConditionalOnMissingBean
-    public DefaultSecurityFilter defaultSecurityFilter(DefaultUserDetailsService defaultUserDetailsService) {
-        return new DefaultSecurityFilter(defaultUserDetailsService);
+    public DefaultSecurityFilter defaultSecurityFilter(
+            DefaultUserDetailsService defaultUserDetailsService,
+            DefaultAuthenticationEntryPoint defaultAuthenticationEntryPoint
+    ) {
+        return new DefaultSecurityFilter(defaultUserDetailsService, defaultAuthenticationEntryPoint);
     }
 
     /**
@@ -90,9 +82,10 @@ public class SecurityAutoConfig {
      */
     @Bean
     @ConditionalOnMissingBean
-    public DefaultSecurityConfig defaultSecurityConfig(DefaultAuthenticationEntryPoint defaultAuthenticationEntryPoint,
-                                                       DefaultSecurityFilter defaultSecurityFilter,
-                                                       SecurityProperties properties
+    public DefaultSecurityConfig defaultSecurityConfig(
+            DefaultAuthenticationEntryPoint defaultAuthenticationEntryPoint,
+            DefaultSecurityFilter defaultSecurityFilter,
+            SecurityProperties properties
     ) {
         return new DefaultSecurityConfig(defaultAuthenticationEntryPoint, defaultSecurityFilter, properties);
     }
