@@ -115,6 +115,4 @@ public class ToolsConfig {
             return Collections.singletonList(swaggerResource);
         };
     }
-
-    ;
 }
