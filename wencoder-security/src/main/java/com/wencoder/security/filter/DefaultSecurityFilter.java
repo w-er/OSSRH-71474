@@ -48,6 +48,7 @@ public class DefaultSecurityFilter extends OncePerRequestFilter {
                 || (request.getContentType() != null
                 && !request.getContentType().contains(StrWencoderPool.REQUEST_HEADERS_CONTENT_TYPE))) {
             filterChain.doFilter(request, response);
+            return;
         }
         try {
             // 获取请求头信息 Authorization 信息
