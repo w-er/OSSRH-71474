@@ -2,6 +2,7 @@ package com.wencoder.tools;
 
 import com.wencoder.tools.exec.conf.ExceptionHandlerAdvice;
 import com.wencoder.tools.utils.CopyUtil;
+import com.wencoder.tools.utils.SpringUtil;
 import io.swagger.models.Swagger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -39,6 +42,7 @@ import java.util.Collections;
 @Import({
 
 })
+@Order(-1)
 @Configuration
 @EnableSwagger2
 // 导入我们自定义的配置类,供当前类使用
@@ -53,6 +57,12 @@ public class ToolsConfig {
     @ConditionalOnMissingBean
     public CopyUtil copyUtil() {
         return new CopyUtil();
+    }
+
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public SpringUtil springUtil() {
+        return new SpringUtil();
     }
 
     @Bean
