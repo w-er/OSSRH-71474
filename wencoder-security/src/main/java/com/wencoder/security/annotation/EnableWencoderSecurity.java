@@ -14,6 +14,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({SecurityAutoConfig.class})
-public @interface EnableSecurity {
+public @interface EnableWencoderSecurity {
 
 }
