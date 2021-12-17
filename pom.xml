@@ -4,15 +4,19 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wencoder.tools</groupId>
-    <artifactId>tools-core</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <groupId>com.wencoder</groupId>
+    <artifactId>OSSRH-71474</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <description>Common Tools</description>
     <url>https://https://github.com/w-er/OSSRH-71474</url>
 
+    <modules>
+        <module>wencoder-core</module>
+        <module>wencoder-security</module>
+    </modules>
 
     <licenses>
         <license>
@@ -23,9 +27,9 @@
 
     <developers>
         <developer>
-            <name>王林</name>
+            <name>Wencoder</name>
             <email>encodmail@gmail.com</email>
-            <organization>Wencoder</organization>
+            <organization>王林</organization>
             <organizationUrl>https://www.wencoder.com</organizationUrl>
         </developer>
     </developers>
@@ -87,45 +91,10 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-        <!-- 集合工具 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>${collections4.version}</version>
-        </dependency>
         <!-- 参数校验 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <!-- JSON 解析 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-        <!-- 文档API -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>${swagger.knife4j.version}</version>
-        </dependency>
-        <!-- 对象CP -->
-        <dependency>
-            <groupId>ma.glasnost.orika</groupId>
-            <artifactId>orika-core</artifactId>
-            <version>${orika.version}</version>
-        </dependency>
-        <!-- 工具包 -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 
