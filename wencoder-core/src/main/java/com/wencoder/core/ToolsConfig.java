@@ -4,6 +4,7 @@ import com.wencoder.core.exec.conf.ExceptionHandlerAdvice;
 import com.wencoder.core.utils.CopyUtil;
 import com.wencoder.core.utils.SpringUtil;
 import io.swagger.models.Swagger;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -120,5 +121,11 @@ public class ToolsConfig {
             swaggerResource.setSwaggerVersion(properties.getSwagger().getVersion());
             return Collections.singletonList(swaggerResource);
         };
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SwaggerChangeOperationNameGenerator swaggerChangeOperationNameGenerator() {
+        return new SwaggerChangeOperationNameGenerator();
     }
 }
