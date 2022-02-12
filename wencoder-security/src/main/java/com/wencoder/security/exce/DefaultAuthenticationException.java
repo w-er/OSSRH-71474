@@ -18,21 +18,21 @@ public class DefaultAuthenticationException extends AuthenticationException {
     @Setter
     private String data;
 
-    public DefaultAuthenticationException(String message) {
-        super(message);
+    public DefaultAuthenticationException(String msg) {
+        super(msg);
     }
 
-    public DefaultAuthenticationException(String message, String data) {
-        super(message);
+    public DefaultAuthenticationException(String msg, String data) {
+        super(msg);
         this.data = data;
     }
 
-    public static DefaultAuthenticationException exception(String message) {
-        return new DefaultAuthenticationException(message);
+    public static DefaultAuthenticationException exception(String msg) {
+        return new DefaultAuthenticationException(msg);
     }
 
-    public static DefaultAuthenticationException exception(String message, String data) {
-        return new DefaultAuthenticationException(message, data);
+    public static DefaultAuthenticationException exception(String msg, String data) {
+        return new DefaultAuthenticationException(msg, data);
     }
 
 }

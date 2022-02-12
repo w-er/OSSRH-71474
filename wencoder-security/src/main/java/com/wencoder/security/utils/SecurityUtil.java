@@ -22,7 +22,7 @@ public class SecurityUtil {
     }
 
     public static Integer getAuthUserId() {
-        return principal().getId();
+        return principal().getLoginUser().getId();
     }
 
 }

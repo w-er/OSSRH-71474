@@ -1,6 +1,6 @@
 package com.wencoder.core.exec.conf;
 
-import com.wencoder.core.domain.ResultVo;
+import com.wencoder.core.domain.Result;
 import com.wencoder.core.exec.BaseUncheckedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -20,7 +20,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.wencoder.core.domain.ResultVo.failed;
+import static com.wencoder.core.domain.Result.failed;
 
 
 /**
@@ -39,7 +39,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(value = Exception.class)
-    public ResultVo<Object> handle(Exception ex) {
+    public Result<Object> handle(Exception ex) {
         ex.printStackTrace();
         log.error("全局异常：{}", ex.getMessage());
         return failed("系统错误");
@@ -52,8 +52,8 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(BaseUncheckedException.class)
-    public ResultVo<Object> handle(BaseUncheckedException ex) {
-        log.error("业务异常：{}", ex.getMessage());
+    public Result<Object> handle(BaseUncheckedException ex) {
+        log.error("业务异常：{}", ex.getMsg());
         return failed(ex);
     }
 
@@ -64,7 +64,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(value = {MultipartException.class})
-    public ResultVo<Object> handle(MultipartException ex) {
+    public Result<Object> handle(MultipartException ex) {
         log.error("文件异常：{}", ex.getMessage());
         return failed("文件不符合要求");
     }
@@ -76,7 +76,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    public ResultVo<Object> handle(MethodArgumentTypeMismatchException ex) {
+    public Result<Object> handle(MethodArgumentTypeMismatchException ex) {
         log.error("文件异常：{}", ex.getMessage());
         return failed("参数不匹配,请填写正确路径");
     }
@@ -88,7 +88,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(value = {ServletRequestBindingException.class})
-    public ResultVo<Object> handle(ServletRequestBindingException ex) {
+    public Result<Object> handle(ServletRequestBindingException ex) {
         log.error("参数异常：{}", ex.getMessage());
         return failed("请求参数错误");
     }
@@ -106,7 +106,7 @@ public class ExceptionHandlerAdvice {
             HttpMediaTypeNotSupportedException.class,
             NumberFormatException.class,
     })
-    public ResultVo<Object> handle(
+    public Result<Object> handle(
             HttpRequestMethodNotSupportedException ex1,
             HttpMediaTypeNotSupportedException ex2,
             NumberFormatException ex3
@@ -124,7 +124,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResultVo<Object> handle(HttpMessageNotReadableException ex) {
+    public Result<Object> handle(HttpMessageNotReadableException ex) {
         log.error("请求异常：{}", ex.getMessage());
         return failed("数据体不能为空");
     }
@@ -137,7 +137,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
-    public ResultVo<Object> handle(ConstraintViolationException ex) {
+    public Result<Object> handle(ConstraintViolationException ex) {
         List<String> errorInformation = ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
         String error = errorInformation.get(0);
         log.error("参数校验异常：{}", error);
@@ -151,7 +151,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误信息
      */
     @ExceptionHandler(BindException.class)
-    public ResultVo<Object> handle(BindException ex) {
+    public Result<Object> handle(BindException ex) {
         String error = ex.getAllErrors().get(0).getDefaultMessage();
         log.error("参数绑定异常：{}", error);
         return failed(error);
@@ -165,7 +165,7 @@ public class ExceptionHandlerAdvice {
      * @return 错误结果集
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResultVo<Object> handle(MethodArgumentNotValidException ex) {
+    public Result<Object> handle(MethodArgumentNotValidException ex) {
         List<String> collect = ex.getBindingResult().getAllErrors()
                 .stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
         String error = collect.get(0);

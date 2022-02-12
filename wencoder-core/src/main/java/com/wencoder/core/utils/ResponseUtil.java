@@ -2,7 +2,7 @@ package com.wencoder.core.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.wencoder.core.domain.ResultVo;
+import com.wencoder.core.domain.Result;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletResponse;
@@ -24,7 +24,7 @@ public class ResponseUtil {
      * @param response
      * @param result
      */
-    public static void print(ServletResponse response, ResultVo<?> result) {
+    public static void print(ServletResponse response, Result<?> result) {
         PrintWriter out = null;
         try {
             response.setCharacterEncoding("UTF-8");
@@ -52,7 +52,7 @@ public class ResponseUtil {
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json; charset=utf-8");
         try (PrintWriter writer = httpServletResponse.getWriter()) {
-            writer.print(JSONObject.toJSONString(ResultVo.failed(status, msg)));
+            writer.print(JSONObject.toJSONString(Result.failed(status, msg)));
         } catch (IOException e) {
             log.error("响应报错：{}", e.getMessage());
         }

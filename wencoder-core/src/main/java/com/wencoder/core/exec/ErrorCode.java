@@ -5,20 +5,26 @@ package com.wencoder.core.exec;
  * <p>
  * Created by 王林 on 2021-01-29 13:01:54
  */
-public enum ExceptionCode implements IException {
+public enum ErrorCode implements IError {
 
     SUCCESSFUL(0, "请求成功"),
-    SYS_BIZ_ERROR(-1, "系统错误"),
-    SYS_ERROR(100500, "系统错误"),
+    SYS_BIZ_ERROR(-1, "业务错误"),
+    SYS_ERROR(1005, "系统发生未知错误！"),
     ;
 
+    /**
+     * 错误代码
+     */
     private final int code;
 
-    private final String message;
+    /**
+     * 错误提示
+     */
+    private final String msg;
 
-    ExceptionCode(int code, String message) {
+    ErrorCode(int code, String msg) {
         this.code = code;
-        this.message = message;
+        this.msg = msg;
     }
 
     @Override
@@ -27,16 +33,16 @@ public enum ExceptionCode implements IException {
     }
 
     @Override
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
     /**
      * 通过code返回枚举
      */
-    public static ExceptionCode value(int code) {
-        ExceptionCode[] values = values();
-        for (ExceptionCode error : values) {
+    public static ErrorCode value(int code) {
+        ErrorCode[] values = values();
+        for (ErrorCode error : values) {
             if (error.getCode() == code) {
                 return error;
             }

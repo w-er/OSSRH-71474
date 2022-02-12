@@ -1,6 +1,8 @@
 package com.wencoder.security.service;
 
 import com.wencoder.security.domain.DefaultUserDetails;
+import com.wencoder.security.domain.LoginUser;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,6 @@ public interface DefaultUserDetailsService extends UserDetailsService {
      * @param request 请求
      * @return 用户信息
      */
-    DefaultUserDetails check(String token, HttpServletRequest request);
+    DefaultUserDetails<LoginUser, GrantedAuthority> check(String token, HttpServletRequest request);
 
 }

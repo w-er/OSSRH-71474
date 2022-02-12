@@ -16,15 +16,16 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "分页结果", description = "分页结果")
-public class PageVo<T> implements Serializable {
+public class PageResult<T> extends Page implements Serializable {
 
     private static final long serialVersionUID = -6868692026104831795L;
 
-    @ApiModelProperty(value = "总记录条", required = true, example = "99999")
+    @ApiModelProperty(value = "总记录", required = true, example = "99999")
     private Long total;
 
-    @ApiModelProperty(position = 2, value = "分页列表")
+    @ApiModelProperty(position = 2, value = "列表")
     private List<T> array;
 
 }

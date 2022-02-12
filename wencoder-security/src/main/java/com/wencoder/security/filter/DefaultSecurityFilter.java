@@ -5,7 +5,7 @@ import cn.hutool.jwt.JWTException;
 import com.wencoder.security.handler.DefaultAuthenticationEntryPoint;
 import com.wencoder.security.properties.SecurityProperties;
 import com.wencoder.security.service.DefaultUserDetailsService;
-import com.wencoder.security.token.DefaultWencoderToken;
+import com.wencoder.security.token.DefaultWCToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.AuthenticationException;
@@ -30,25 +30,26 @@ public class DefaultSecurityFilter extends OncePerRequestFilter {
     protected final DefaultAuthenticationEntryPoint entryPoint;
     protected final SecurityProperties properties;
 
-    public DefaultSecurityFilter(DefaultUserDetailsService service,
-                                 DefaultAuthenticationEntryPoint entryPoint,
-                                 SecurityProperties properties) {
+    public DefaultSecurityFilter(
+            DefaultUserDetailsService service, DefaultAuthenticationEntryPoint entryPoint, SecurityProperties properties) {
         this.service = service;
         this.entryPoint = entryPoint;
         this.properties = properties;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         setResponseHeader(request, response);
+        // Vue 会对接口进行校验
         if (!"OPTIONS".equalsIgnoreCase(request.getMethod())) {
             try {
                 String bearerToken = request.getHeader(properties.getRequestHeaderToken());
                 if (StringUtils.isNotEmpty(bearerToken) && bearerToken.startsWith(properties.getRequestHeaderTokenPrefix())) {
                     String token = bearerToken.substring(properties.getRequestHeaderTokenPrefix().length());
                     UserDetails detail = service.check(token, request);
-                    DefaultWencoderToken authentication = new DefaultWencoderToken(detail, detail.getAuthorities());
+                    DefaultWCToken authentication = new DefaultWCToken(detail, detail.getAuthorities());
                     // 全局注入角色权限信息和登录用户基本信息
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }

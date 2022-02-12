@@ -23,41 +23,24 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class DefaultUserDetails implements UserDetails {
+public class DefaultUserDetails<U extends LoginUser, R extends GrantedAuthority> implements UserDetails {
 
-    /**
-     * ID
-     */
-    private Integer id;
-
-    /**
-     * 账号
-     */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 角色
-     */
-    private List<String> roles;
+    private U loginUser;
+    private List<R> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority())).collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return loginUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.username;
+        return loginUser.getUsername();
     }
 
     @Override

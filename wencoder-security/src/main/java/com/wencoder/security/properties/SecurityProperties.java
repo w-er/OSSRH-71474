@@ -23,14 +23,14 @@ import java.util.List;
 public class SecurityProperties {
 
     /**
-     * 请求头Token存储key
+     * 请求头 Token 存储 key
      */
-    public String requestHeaderToken = "Authorization";
+    public String requestHeaderToken = "WC-Token";
 
     /**
-     * 请求头Token 前缀
+     * 请求头 Token 前缀
      */
-    public String requestHeaderTokenPrefix = "Bearer ";
+    public String requestHeaderTokenPrefix = "";
 
     /**
      * 请求头类型
@@ -67,7 +67,6 @@ public class SecurityProperties {
          * 错误超过次数后多少分钟后才能继续登录（分钟）
          */
         private Integer loginAfterTime = 10;
-
     }
 
     public String[] getIgnored() {

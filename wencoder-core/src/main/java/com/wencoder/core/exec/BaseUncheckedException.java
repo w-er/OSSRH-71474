@@ -14,11 +14,11 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class BaseUncheckedException extends RuntimeException implements IException {
+public class BaseUncheckedException extends RuntimeException implements IError {
 
     private int code;
 
-    private String message;
+    private String msg;
 
     private Map<String, Object> extend;
 
@@ -27,9 +27,9 @@ public class BaseUncheckedException extends RuntimeException implements IExcepti
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public BaseUncheckedException(int code, String message, Map<String, Object> extend) {
+    public BaseUncheckedException(int code, String msg, Map<String, Object> extend) {
         this.code = code;
-        this.message = message;
+        this.msg = msg;
         this.extend = extend;
     }
 
@@ -39,7 +39,7 @@ public class BaseUncheckedException extends RuntimeException implements IExcepti
     }
 
     @Override
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 }
