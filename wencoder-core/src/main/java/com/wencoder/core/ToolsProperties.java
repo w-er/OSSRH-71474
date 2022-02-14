@@ -26,16 +26,16 @@ public class ToolsProperties {
      */
     @Data
     public static class Swagger {
-        /* 基础信息 */
+        // 基础信息
         private Boolean enabled = Boolean.TRUE;
         private String title = "API";
         private String desc = "内容太少了，不好意思看。。。";
         private String basePackage = "com.wencoder.demo.controller";
-        /* 联系 */
-        private final String name = "王林";
+        // 联系
+        private final String name = "wencoder";
         private final String url = "https://www.wencoder.com";
         private final String email = "encodmail@126.com";
-        /* 版本号 */
+        // 版本号
         private String version = "1.0";
     }
 }
