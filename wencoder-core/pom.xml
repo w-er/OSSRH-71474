@@ -7,12 +7,11 @@
         <artifactId>OSSRH-71474</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
+    <groupId>com.wencoder.common</groupId>
     <artifactId>wencoder-core</artifactId>
     <version>0.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Common Tools</description>
-
     <dependencies>
         <!-- 切面 -->
         <dependency>
@@ -42,7 +41,6 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>${swagger.knife4j.version}</version>
         </dependency>
-
         <!-- 对象CP -->
         <dependency>
             <groupId>ma.glasnost.orika</groupId>
@@ -56,5 +54,4 @@
             <version>${hutool.version}</version>
         </dependency>
     </dependencies>
-
 </project>

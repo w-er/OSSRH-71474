@@ -21,7 +21,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "分页表单", description = "从page开始分页，每一页显示limit")
-public class Page implements Serializable {
+public class PageQuery implements Serializable {
 
     private static final long serialVersionUID = 6094298514687248499L;
 

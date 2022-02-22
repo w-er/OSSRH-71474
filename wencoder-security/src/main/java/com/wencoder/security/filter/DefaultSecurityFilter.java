@@ -1,7 +1,6 @@
 package com.wencoder.security.filter;
 
 
-import cn.hutool.jwt.JWTException;
 import com.wencoder.security.handler.DefaultAuthenticationEntryPoint;
 import com.wencoder.security.properties.SecurityProperties;
 import com.wencoder.security.service.DefaultUserDetailsService;
@@ -54,9 +53,6 @@ public class DefaultSecurityFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
                 filterChain.doFilter(request, response);
-            } catch (JWTException e) {
-                SecurityContextHolder.clearContext();
-                this.entryPoint.commence(request, response, null);
             } catch (AuthenticationException e) {
                 SecurityContextHolder.clearContext();
                 this.entryPoint.commence(request, response, e);

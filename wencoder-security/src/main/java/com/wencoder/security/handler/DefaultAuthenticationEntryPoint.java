@@ -20,7 +20,8 @@ public class DefaultAuthenticationEntryPoint implements AuthenticationEntryPoint
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
         if (e != null) {
-            log.error(e.getMessage());
+            String uri = request.getRequestURI();
+            log.error("{}，{}", uri, e.getMessage());
             print(response, 10401, "未登录，不能访问当前服务！");
         } else {
             print(response, 10402, "无效令牌！");

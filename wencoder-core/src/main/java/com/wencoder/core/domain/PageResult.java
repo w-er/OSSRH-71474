@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "分页结果", description = "分页结果")
-public class PageResult<T> extends Page implements Serializable {
+public class PageResult<T> extends PageQuery implements Serializable {
 
     private static final long serialVersionUID = -6868692026104831795L;
 

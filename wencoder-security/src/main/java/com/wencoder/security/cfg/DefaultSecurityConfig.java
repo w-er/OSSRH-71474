@@ -21,9 +21,7 @@ public class DefaultSecurityConfig extends WebSecurityConfigurerAdapter {
     protected final DefaultSecurityFilter filter;
     protected final SecurityProperties properties;
 
-    public DefaultSecurityConfig(DefaultAuthenticationEntryPoint point,
-                                 DefaultSecurityFilter filter,
-                                 SecurityProperties properties) {
+    public DefaultSecurityConfig(DefaultAuthenticationEntryPoint point, DefaultSecurityFilter filter, SecurityProperties properties) {
         this.point = point;
         this.filter = filter;
         this.properties = properties;
@@ -39,6 +37,8 @@ public class DefaultSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // 4、请求权限配置
         http.authorizeRequests()
+                //.antMatchers("/portal/**", "/common/**").permitAll()
+                //.antMatchers("/admin/**").hasRole("ADMIN");
                 // 定义配置类，加载配置类地址
                 .antMatchers(properties.getIgnored()).permitAll()
                 // 剩下的所有请求都需要认证才能访问

@@ -52,13 +52,13 @@ public class SecurityProperties {
     @Data
     public static class Token {
         /**
+         * token加密密钥
+         */
+        String secret = "ven";
+        /**
          * token过期时间（分钟）
          */
-        private Integer tokenExpireTime = 60;
-        /**
-         * 用户选择保存登录状态对应token过期时间（天）
-         */
-        private Integer saveLoginTime = 7;
+        private Integer tokenExpireTime = 60 * 24 * 30;
         /**
          * 限制用户登陆错误次数（次）
          */

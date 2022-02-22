@@ -26,12 +26,14 @@ public class DefaultUserDetailsServiceImpl implements DefaultUserDetailsService 
     private DefaultUserDetails<LoginUser, GrantedAuthority> defaultUser;
 
     public DefaultUserDetailsServiceImpl() {
-        LoginUser loginUser = new LoginUser().setUsername("test").setPassword("123456");
-        GrantedAuthority authority = new SimpleGrantedAuthority("Test");
+        LoginUser loginUser = new LoginUser()
+                .setUsername("ven")
+                .setPassword("123456");
+        GrantedAuthority authority = new SimpleGrantedAuthority("ADMIN");
         defaultUser = new DefaultUserDetails<>()
                 .setLoginUser(loginUser)
                 .setRoles(Collections.singletonList(authority));
-        log.info("权限认证模块默认账号：{}", defaultUser.toString());
+        log.info("Using default security account：{} and password：{}", defaultUser.getUsername(), defaultUser.getPassword());
     }
 
     @Override

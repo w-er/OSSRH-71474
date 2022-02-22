@@ -4,7 +4,6 @@ import com.wencoder.core.exec.conf.ExceptionHandlerAdvice;
 import com.wencoder.core.utils.CopyUtil;
 import com.wencoder.core.utils.SpringUtil;
 import io.swagger.models.Swagger;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -123,6 +122,11 @@ public class ToolsConfig {
         };
     }
 
+    /**
+     * swagger 重复方法日志隐藏
+     * <p>
+     * Created by 王林 on 2021-11-25 14:38:18
+     */
     @Bean
     @ConditionalOnMissingBean
     public SwaggerChangeOperationNameGenerator swaggerChangeOperationNameGenerator() {
