@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wencoder.set.AutoConfig
+com.wencoder.fill.FillAutoConfiguration

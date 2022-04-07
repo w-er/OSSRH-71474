@@ -8,14 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.wencoder.common</groupId>
-    <artifactId>wencoder-set-value</artifactId>
+    <artifactId>wencoder-fill</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <description>设定值</description>
-
-    <properties>
-
-    </properties>
+    <description>填充</description>
 
     <dependencies>
         <!-- 切面 -->

@@ -12,7 +12,7 @@
         <module>wencoder-demo</module>
         <module>wencoder-core</module>
         <module>wencoder-security</module>
-        <module>wencoder-set-value</module>
+        <module>wencoder-fill</module>
         <module>spring-boot-demo</module>
     </modules>
     <licenses>
