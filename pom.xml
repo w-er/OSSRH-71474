@@ -23,10 +23,10 @@
     </licenses>
     <developers>
         <developer>
-            <name>Wencoder</name>
+            <name>王林</name>
             <email>encodmail@gmail.com</email>
-            <organization>王林</organization>
-            <organizationUrl>https://www.wencoder.com</organizationUrl>
+            <organization>wencoder</organization>
+            <organizationUrl>https://wencoder.com</organizationUrl>
         </developer>
     </developers>
     <scm>

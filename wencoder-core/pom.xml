@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.wencoder.common</groupId>
     <artifactId>wencoder-core</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Common Tools</description>
     <dependencies>
